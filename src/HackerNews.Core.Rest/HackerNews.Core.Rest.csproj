@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>HackerNews.Core.Rest</AssemblyName>
+    <RootNamespace>News.Core.Rest</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ReactiveUI" Version="9.0.1" />
+    <PackageReference Include="ReactiveUI.XamForms" Version="9.0.1" />
+    <PackageReference Include="Refit" Version="4.6.48" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Cache\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HackerNews.Core.Models\HackerNews.Core.Models.csproj" />
+    <ProjectReference Include="..\HackerNews.Infrastructure.Framework\HackerNews.Infrastructure.Framework.csproj" />
+  </ItemGroup>
+
+</Project>

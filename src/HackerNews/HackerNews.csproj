@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="ReactiveUI" Version="9.0.1" />
+    <PackageReference Include="ReactiveUI.XamForms" Version="9.0.1" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.168" />
+    <PackageReference Include="Sextant" Version="1.4.0" />
+    <PackageReference Include="Xamarin.Forms" Version="3.2.0.871581" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TemplateSelectors\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HackerNews.Core.Rest\HackerNews.Core.Rest.csproj" />
+    <ProjectReference Include="..\HackerNews.Infrastructure.Framework\HackerNews.Infrastructure.Framework.csproj" />
+    <ProjectReference Include="..\HackerNews.ViewModels\HackerNews.ViewModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="NewsApp.xaml.cs">
+      <DependentUpon>NewsApp.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Posts\PostsView.xaml.cs">
+      <DependentUpon>PostsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Posts\PostCellView.xaml.cs">
+      <DependentUpon>PostCellView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\HomeScreen\HomeScreenCellView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\HomeScreen\HomeScreenView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Posts\PostsView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="NewsApp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\News\NewsCellView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\News\NewsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+</Project>

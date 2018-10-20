@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+  x:Class="HackerNews.NewsApp"
+  xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:views="clr-namespace:HackerNews.Views">
+  <Application.Resources>
+    <ResourceDictionary>
+
+      <!--  Color Variables  -->
+
+      <Color x:Key="defaultBackgroundColor">#FFFFFF</Color>
+      <Color x:Key="whiteColor">#FFFFFF</Color>
+      <Color x:Key="darkColor">#8C8C8C</Color>
+      <Color x:Key="grayColor">#333333</Color>
+      <Color x:Key="blackColor">#3D3D3D</Color>
+      <Color x:Key="darkMidnightBlueColor">#003366</Color>
+      <Color x:Key="paleGreyColor">#EFEFF4</Color>
+      <Color x:Key="paleBlueishColor">#b3b3cb</Color>
+      <Color x:Key="hyperLinkColor">#0000EE</Color>
+      <Color x:Key="orangeColor">#ff6600</Color>
+      <Color x:Key="beigeColor">#f6f6ef</Color>
+
+      <!--  Default Styles  -->
+
+      <Style x:Key="defaultNavigationPageStyle" TargetType="views:NavigationPageBase">
+        <Setter Property="BarBackgroundColor" Value="{StaticResource orangeColor}" />
+        <Setter Property="BarTextColor" Value="{StaticResource darkMidnightBlueColor}" />
+        <Setter Property="Tint" Value="{StaticResource darkMidnightBlueColor}" />
+        <Setter Property="FontSize" Value="18" />
+      </Style>
+
+      <Style x:Key="defaultContentPageStyle" TargetType="ContentPage">
+        <Setter Property="NavigationPage.BackButtonTitle" Value="" />
+        <Setter Property="NavigationPage.BackgroundColor" Value="{StaticResource beigeColor}" />
+      </Style>
+
+      <!--  NavigationPage Styles  -->
+
+      <Style
+        x:Key="lightNavigationPageStyle"
+        BasedOn="{StaticResource defaultNavigationPageStyle}"
+        TargetType="views:NavigationPageBase">
+        <Setter Property="BarBackgroundColor" Value="{StaticResource paleGreyColor}" />
+        <Setter Property="BarTextColor" Value="{StaticResource blackColor}" />
+      </Style>
+
+      <Style
+        x:Key="whiteNavigationPageStyle"
+        BasedOn="{StaticResource defaultNavigationPageStyle}"
+        TargetType="views:NavigationPageBase">
+        <Setter Property="BarBackgroundColor" Value="{StaticResource whiteColor}" />
+        <Setter Property="BarTextColor" Value="{StaticResource blackColor}" />
+      </Style>
+
+      <Style
+        ApplyToDerivedTypes="True"
+        BasedOn="{StaticResource defaultContentPageStyle}"
+        TargetType="ContentPage" />
+
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

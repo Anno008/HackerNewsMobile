@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<rxui:ReactiveViewCell
+  x:Class="HackerNews.Views.Posts.PostCellView"
+  xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:i18n="clr-namespace:HackerNews.Extensions;assembly=HackerNews"
+  xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+  xmlns:views="clr-namespace:HackerNews.Views;assembly=HackerNews"
+  xmlns:vm="clr-namespace:HackerNews.ViewModels.Posts;assembly=HackerNews.ViewModels"
+  x:TypeArguments="vm:PostCellViewModel"
+  AutomationId="PostCellView">
+  <ViewCell.View>
+    <StackLayout Orientation="Vertical">
+      <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+        <Label Text="By: " HorizontalOptions="Start"/>
+        <Label x:Name="AuthorNameLabel"  HorizontalOptions="Start"/>
+        <Label x:Name="DateTimePostedLabel" HorizontalOptions="EndAndExpand"/>
+      </StackLayout>
+      <Label x:Name="TitleLabel" />
+    </StackLayout>
+  </ViewCell.View>
+</rxui:ReactiveViewCell>

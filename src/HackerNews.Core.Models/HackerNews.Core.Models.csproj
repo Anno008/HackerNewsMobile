@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>HackerNews.Core.Models</AssemblyName>
+    <RootNamespace>HackerNews.Core.Models</RootNamespace>
+  </PropertyGroup>
+
+</Project>

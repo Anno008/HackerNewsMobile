@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ReactiveUI" Version="9.0.1" />
+    <PackageReference Include="ReactiveUI.XamForms" Version="9.0.1" />
+    <PackageReference Include="Sextant" Version="1.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HackerNews.Core\HackerNews.Core.csproj" />
+    <ProjectReference Include="..\HackerNews.Infrastructure.Framework\HackerNews.Infrastructure.Framework.csproj" />
+  </ItemGroup>
+
+</Project>

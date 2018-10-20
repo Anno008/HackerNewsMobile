@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<views:ContentPageBase
+  x:Class="HackerNews.Views.HomeScreen.HomeScreenView"
+  xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:i18n="clr-namespace:HackerNews.Extensions;assembly=HackerNews"
+  xmlns:views="clr-namespace:HackerNews.Views;assembly=HackerNews"
+  xmlns:cellView="clr-namespace:HackerNews.Views.HomeScreen;assembly=HackerNews"
+  xmlns:vm="clr-namespace:HackerNews.ViewModels.HomeScreen;assembly=HackerNews.ViewModels"
+  x:TypeArguments="vm:HomeScreenViewModel"
+  AutomationId="NewsView">
+  <StackLayout>
+    <ListView x:Name="MenuItemsList" Margin="5" SeparatorVisibility="Default" SeparatorColor="DarkBlue">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <cellView:HomeScreenCellView/>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+</views:ContentPageBase>
