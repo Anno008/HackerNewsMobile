@@ -10,13 +10,15 @@
   x:TypeArguments="vm:PostCellViewModel"
   AutomationId="PostCellView">
   <ViewCell.View>
-    <StackLayout Orientation="Vertical">
-      <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-        <Label Text="By: " HorizontalOptions="Start"/>
-        <Label x:Name="AuthorNameLabel"  HorizontalOptions="Start"/>
-        <Label x:Name="DateTimePostedLabel" HorizontalOptions="EndAndExpand"/>
+    <Frame BorderColor="Black">
+      <StackLayout Orientation="Vertical" Margin="5">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+          <Label Text="By: " HorizontalOptions="Start"/>
+          <Label x:Name="AuthorNameLabel"  HorizontalOptions="Start"/>
+          <Label x:Name="DateTimePostedLabel" HorizontalOptions="EndAndExpand"/>
+        </StackLayout>
+        <Label x:Name="TitleLabel" />
       </StackLayout>
-      <Label x:Name="TitleLabel" />
-    </StackLayout>
+    </Frame>
   </ViewCell.View>
 </rxui:ReactiveViewCell>
