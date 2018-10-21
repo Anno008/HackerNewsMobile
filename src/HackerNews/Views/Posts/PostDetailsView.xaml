@@ -11,7 +11,7 @@
   x:TypeArguments="vm:PostDetailsViewModel"
   AutomationId="PostsView">
   <StackLayout>
-    <StackLayout>
+    <StackLayout Margin="5">
       <Label x:Name="TitleLabel" FontAttributes="Bold"/>
       <StackLayout Orientation="Horizontal">
         <Label Text="{i18n:Translate Author}"/>
@@ -29,6 +29,7 @@
         <Label Text="{i18n:Translate Comments}"/>
         <Label x:Name="CommentsLabel"/>
       </StackLayout>
+      <Label x:Name="UrlLabel"/>
       <Label x:Name="TextLabel"/>
 
     </StackLayout>

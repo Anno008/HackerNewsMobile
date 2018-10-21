@@ -55,6 +55,13 @@ namespace HackerNews.ViewModels.Posts
             set => this.RaiseAndSetIfChanged(ref _score, value);
         }
 
+        private string _url;
+        public string Url
+        {
+            get => _url;
+            set => this.RaiseAndSetIfChanged(ref _url, value);
+        }
+
         public PostCellViewModel(Post post)
         {
             _id = post.Id;
@@ -64,6 +71,7 @@ namespace HackerNews.ViewModels.Posts
             _text = post.Text;
             _commentsCount = post.Kids?.Count ?? 0;
             _score = post.Score;
+            _url = post.Url;
         }
     }
 }
