@@ -12,7 +12,7 @@ namespace HackerNews.Core
 {
     public class HackerNewsService : IHackerNewsService
     {
-        private readonly IHackerNewsRestService _hackerNewsRepository;
+        private readonly IHackerNewsRestService _hackerNewsRestService;
 
         private readonly Subject<Post> _post = new Subject<Post>();
         public IObservable<Post> Post => _post.AsObservable();
@@ -20,15 +20,15 @@ namespace HackerNews.Core
         private readonly SourceCache<Post, int> _posts = new SourceCache<Post, int>(x => x.Id);
         public IObservableCache<Post, int> Posts => _posts;
 
-        public HackerNewsService(IHackerNewsRestService hackerNewsRepository = null)
+        public HackerNewsService(IHackerNewsRestService hackerNewsRestService = null)
         {
-            _hackerNewsRepository = hackerNewsRepository ?? Locator.Current.GetService<IHackerNewsRestService>();
+            _hackerNewsRestService = hackerNewsRestService ?? Locator.Current.GetService<IHackerNewsRestService>();
             _posts = new SourceCache<Post, int>(x => x.Id);
         }
 
         public IObservable<Unit> GetPosts(int offset, PostType postType)
         {
-            return _hackerNewsRepository
+            return _hackerNewsRestService
                         .GetPosts(offset, postType)
                         .Select(result =>
                         {
@@ -39,7 +39,7 @@ namespace HackerNews.Core
 
         public IObservable<Unit> GetPost(int postId)
         {
-            return _hackerNewsRepository
+            return _hackerNewsRestService
                         .GetPost(postId)
                         .Select(post =>
                         {
