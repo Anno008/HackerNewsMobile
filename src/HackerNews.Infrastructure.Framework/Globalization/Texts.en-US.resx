@@ -144,6 +144,9 @@
   <data name="New" xml:space="preserve">
     <value>New</value>
   </data>
+  <data name="NoInternetConnection" xml:space="preserve">
+    <value>Your device has no internet connection</value>
+  </data>
   <data name="NoOptionsToShow" xml:space="preserve">
     <value>No options to show</value>
   </data>

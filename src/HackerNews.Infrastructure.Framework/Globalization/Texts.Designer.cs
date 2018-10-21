@@ -142,6 +142,15 @@ namespace HackerNews.Infrastructure.Framework.Globalization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [Your device has no internet connection].
+        /// </summary>
+        public static string NoInternetConnection {
+            get {
+                return ResourceManager.GetString("NoInternetConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [No options to show].
         /// </summary>
         public static string NoOptionsToShow {

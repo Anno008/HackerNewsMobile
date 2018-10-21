@@ -111,8 +111,7 @@ namespace HackerNews.ViewModels.Posts
                     GetComments.ThrownExceptions,
                     GetPost.ThrownExceptions)
                 .ObserveOn(_schedulerService.MainScheduler)
-                .SelectMany(ex => ShowGenericError(null, ex))
-                .Subscribe();
+                .SelectMany(ex => ShowGenericError(null, ex));
 
             // When a comment gets selected navigate to the details page
             this.WhenAnyValue(x => x.SelectedCommentPost)

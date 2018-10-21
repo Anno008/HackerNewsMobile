@@ -89,7 +89,7 @@ namespace HackerNews.ViewModels
         private string GetErrorMessageText(string errorMessage = "", Exception exception = null)
         {
             return string.IsNullOrEmpty(errorMessage)
-                ? (exception != null && exception is GenericException ? exception.Message : Texts.GenericError)
+                ? (exception != null && (exception is GenericException || exception is NoInternetConnectionException) ? exception.Message : Texts.GenericError)
                 : errorMessage;
         }
     }

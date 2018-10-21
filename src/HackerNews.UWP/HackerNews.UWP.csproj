@@ -144,6 +144,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs">
+      <Version>7.0.1</Version>
+    </PackageReference>
     <PackageReference Include="ReactiveUI">
       <Version>9.0.1</Version>
     </PackageReference>
@@ -152,6 +155,9 @@
     </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>1.1.4.168</Version>
+    </PackageReference>
+    <PackageReference Include="Splat">
+      <Version>5.0.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="3.3.0.912540" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.9" />

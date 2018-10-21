@@ -8,6 +8,7 @@ using HackerNews.Core.Models;
 using HackerNews.Core.Rest.Mappers;
 using HackerNews.Core.RestRepository.Rest;
 using HackerNews.Infrastructure.Framework.Device;
+using HackerNews.Infrastructure.Framework.Exceptions;
 using News.Core.Models;
 using Splat;
 
@@ -15,18 +16,26 @@ namespace HackerNews.Core.Rest.RestApiServices
 {
     public class HackerNewsRestService : IHackerNewsRestService
     {
-        private readonly IApiService _apiService;
         private const int PageSize = 25;
+
+        private readonly IApiService _apiService;
+        private readonly IConnectivity _connectivity;
 
         public HackerNewsRestService(
             IApiService apiService = null,
             IConnectivity connectivity = null)
         {
             _apiService = apiService ?? Locator.Current.GetService<IApiService>();
+            _connectivity = connectivity ?? Locator.Current.GetService<IConnectivity>();
         }
 
-        public IObservable<IEnumerable<Post>> GetPosts(int offset, PostType postType) =>
-                GetPostsAsync(offset, postType).ToObservable();
+        public IObservable<IEnumerable<Post>> GetPosts(int offset, PostType postType)
+        {
+            if (!_connectivity.IsConnected)
+                throw new NoInternetConnectionException();
+
+            return GetPostsAsync(offset, postType).ToObservable();
+        }
 
         public IObservable<Post> GetPost(int storyId)
         {
@@ -41,6 +50,9 @@ namespace HackerNews.Core.Rest.RestApiServices
 
         public IObservable<IEnumerable<Post>> GetPostComments(int postId, int offset)
         {
+            if (!_connectivity.IsConnected)
+                throw new NoInternetConnectionException();
+
             return GetPost(postId).SelectMany(p => GetCommentsAsync(p.Kids, offset).ToObservable());
         }
 

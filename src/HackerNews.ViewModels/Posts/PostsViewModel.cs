@@ -47,7 +47,6 @@ namespace HackerNews.ViewModels.Posts
                 .CreateFromObservable<int, Unit>(offset =>
                     _hackerNewsService.GetPosts(offset, postType),
                     outputScheduler: _schedulerService.TaskPoolScheduler);
-            GetPosts.Subscribe();
 
             // Connecting the dynamic data source cache with the view model's list
             // Changes are displayed on the UI immediately after the service cache gets updated
@@ -76,8 +75,10 @@ namespace HackerNews.ViewModels.Posts
             // When any of the Reactive Commands throw an error handle it here
             GetPosts
                 .ThrownExceptions
+                .SubscribeOn(_schedulerService.TaskPoolScheduler)
                 .ObserveOn(_schedulerService.MainScheduler)
-                .Subscribe(ex => this.ShowGenericError("" , ex));
+                .SelectMany(ex => this.ShowGenericError("" , ex))
+                .Subscribe();
 
             this.WhenActivated((CompositeDisposable disposables) =>
             {
