@@ -47,5 +47,16 @@ namespace HackerNews.Core
                             return Unit.Default;
                         });
         }
+
+        public IObservable<Unit> GetPostComments(int postId, int offset)
+        {
+            return _hackerNewsRestService
+                        .GetPostComments(postId, offset)
+                        .Select(result =>
+                        {
+                            _posts.AddOrUpdate(result);
+                            return Unit.Default;
+                        });
+        }
     }
 }

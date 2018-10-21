@@ -35,8 +35,9 @@ namespace HackerNews
 
         internal void RegisterViews()
         {
-            SextantHelper.RegisterView<PostsView, PostsViewModel>();
             SextantHelper.RegisterView<HomeScreenView, HomeScreenViewModel>();
+            SextantHelper.RegisterView<PostsView, PostsViewModel>();
+            SextantHelper.RegisterView<PostDetailsView, PostDetailsViewModel>();
         }
     }
 }

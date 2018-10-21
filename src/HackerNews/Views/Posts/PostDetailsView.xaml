@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<views:ContentPageBase
+  x:Class="HackerNews.Views.Posts.PostDetailsView"
+  xmlns="http://xamarin.com/schemas/2014/forms"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:i18n="clr-namespace:HackerNews.Extensions;assembly=HackerNews"
+  xmlns:views="clr-namespace:HackerNews.Views;assembly=HackerNews"
+  xmlns:controls="clr-namespace:HackerNews.Controls;assembly=HackerNews"
+  xmlns:cellView="clr-namespace:HackerNews.Views.Posts;assembly=HackerNews"
+  xmlns:vm="clr-namespace:HackerNews.ViewModels.Posts;assembly=HackerNews.ViewModels"
+  x:TypeArguments="vm:PostDetailsViewModel"
+  AutomationId="PostsView">
+  <StackLayout>
+    <StackLayout>
+      <Label x:Name="TitleLabel"/>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="{i18n:Translate Author}"/>
+        <Label x:Name="AuthorLabel"/>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="{i18n:Translate TimePosted}"/>
+        <Label x:Name="TimePostedLabel"/>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="{i18n:Translate Score}"/>
+        <Label x:Name="ScoreLabel"/>
+      </StackLayout>
+      <StackLayout Orientation="Horizontal">
+        <Label Text="{i18n:Translate Comments}"/>
+        <Label x:Name="CommentsLabel"/>
+      </StackLayout>
+      <Label x:Name="TextLabel"/>
+
+    </StackLayout>
+    <StackLayout>
+      <controls:CustomActivityIndicator x:Name="ActivityIndicator"/>
+      <controls:PageableListView x:Name="PostsList" HasUnevenRows="True">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <cellView:PostCellView />
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </controls:PageableListView>
+    </StackLayout>
+  </StackLayout>
+</views:ContentPageBase>

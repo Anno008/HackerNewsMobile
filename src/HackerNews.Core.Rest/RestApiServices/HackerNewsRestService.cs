@@ -39,6 +39,23 @@ namespace HackerNews.Core.Rest.RestApiServices
                         .Select(x => mapper.ToDomainEntity(x));
         }
 
+        public IObservable<IEnumerable<Post>> GetPostComments(int postId, int offset)
+        {
+            return GetPost(postId).SelectMany(p => GetCommentsAsync(p.Kids, offset).ToObservable());
+        }
+
+        private async Task<IEnumerable<Post>> GetCommentsAsync(List<int> commentIds, int offset)
+        {
+            var mapper = new PostMapper();
+
+            var tasks = commentIds.Skip(offset)
+                            .Take(PageSize)
+                            .Select(id => _apiService.GetHttpClient().GetPostAsync(id));
+
+            var acquiredPosts = await Task.WhenAll(tasks);
+            return new List<Post>(acquiredPosts.Select(x => mapper.ToDomainEntity(x)));
+        }
+
         private async Task<IEnumerable<Post>> GetPostsAsync(int offset, PostType type)
         {
             var mapper = new PostMapper();
