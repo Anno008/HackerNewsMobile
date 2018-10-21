@@ -27,11 +27,19 @@ namespace HackerNews.ViewModels.Posts
             set => this.RaiseAndSetIfChanged(ref _author, value);
         }
 
+        private string _text;
+        public string Text
+        {
+            get => _text;
+            set => this.RaiseAndSetIfChanged(ref _text, value);
+        }
+
         public PostCellViewModel(Post post)
         {
             _title = post.Title;
             _postDate = post.Time;
             _author = post.By;
+            _text = post.Text;
         }
     }
 }

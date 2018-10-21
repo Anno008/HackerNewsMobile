@@ -18,6 +18,7 @@
           <Label x:Name="DateTimePostedLabel" HorizontalOptions="EndAndExpand"/>
         </StackLayout>
         <Label x:Name="TitleLabel" />
+        <Label x:Name="TextLabel" />
       </StackLayout>
     </Frame>
   </ViewCell.View>
