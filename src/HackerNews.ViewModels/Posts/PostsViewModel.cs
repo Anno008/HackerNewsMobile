@@ -1,7 +1,8 @@
 ﻿using System.Reactive;
 using System.Reactive.Linq;
-using HackerNews.Infrastructure.Framework.Scheduler;
 using ReactiveUI;
+using System.Reactive.Disposables;
+using HackerNews.Infrastructure.Framework.Scheduler;
 using Sextant.Abstraction;
 using Splat;
 using System;
@@ -76,7 +77,13 @@ namespace HackerNews.ViewModels.Posts
             GetPosts
                 .ThrownExceptions
                 .ObserveOn(_schedulerService.MainScheduler)
-                .Subscribe(e => this.ShowGenericError());
+                .Subscribe(ex => this.ShowGenericError("" , ex));
+
+            this.WhenActivated((CompositeDisposable disposables) =>
+            {
+                // Clearing the selected post once this VM is activated
+                SelectedPost = null;
+            });
         }
     }
 }

@@ -20,6 +20,8 @@
       <Color x:Key="hyperLinkColor">#0000EE</Color>
       <Color x:Key="orangeColor">#ff6600</Color>
       <Color x:Key="beigeColor">#f6f6ef</Color>
+      <Color x:Key="redColor">#FF0000</Color>
+      <Color x:Key="greenToastColor">#228B22</Color>
 
       <!--  Default Styles  -->
 

@@ -48,7 +48,9 @@ namespace HackerNews.Core.Rest.RestApiServices
         {
             var mapper = new PostMapper();
 
-            var tasks = commentIds.Skip(offset)
+            var ids = commentIds ?? new List<int>();
+
+            var tasks = ids.Skip(offset)
                             .Take(PageSize)
                             .Select(id => _apiService.GetHttpClient().GetPostAsync(id));
 
