@@ -64,7 +64,7 @@ namespace HackerNews.ViewModels.Posts
             this.WhenAnyValue(x => x.SelectedPost)
                     .Where(post => post != null)
                     .ObserveOn(_schedulerService.MainScheduler)
-                    .SelectMany(vm => _viewStackService.PushPage(new PostDetailsViewModel(vm.Id)))
+                    .SelectMany(vm => _viewStackService.PushPage(new PostDetailsViewModel(vm.Id, vm.Title)))
                     .Subscribe();
 
             // Handling the flag for activity indicator when the command is executing

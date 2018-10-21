@@ -45,10 +45,11 @@ namespace HackerNews.ViewModels.Posts
 
         public PostDetailsViewModel(
             int postId,
+            string title,
             ISchedulerService schedulerService = null,
             IViewStackService viewStackService = null,
             IHackerNewsService hackerNewsService = null)
-            : base(schedulerService, viewStackService)
+            : base(schedulerService, viewStackService, title)
         {
             _hackerNewsService = hackerNewsService ?? Locator.Current.GetService<IHackerNewsService>();
 
@@ -117,7 +118,7 @@ namespace HackerNews.ViewModels.Posts
             this.WhenAnyValue(x => x.SelectedCommentPost)
                     .Where(post => post != null && post.CommentsCount > 0)
                     .ObserveOn(_schedulerService.MainScheduler)
-                    .SelectMany(vm => _viewStackService.PushPage(new PostDetailsViewModel(vm.Id)))
+                    .SelectMany(vm => _viewStackService.PushPage(new PostDetailsViewModel(vm.Id, Id)))
                     .Subscribe();
 
             this.WhenActivated((CompositeDisposable disposables) =>
