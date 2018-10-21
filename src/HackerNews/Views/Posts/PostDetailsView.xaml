@@ -12,7 +12,7 @@
   AutomationId="PostsView">
   <StackLayout>
     <StackLayout>
-      <Label x:Name="TitleLabel"/>
+      <Label x:Name="TitleLabel" FontAttributes="Bold"/>
       <StackLayout Orientation="Horizontal">
         <Label Text="{i18n:Translate Author}"/>
         <Label x:Name="AuthorLabel"/>
