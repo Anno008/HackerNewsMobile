@@ -41,7 +41,7 @@ namespace HackerNews.Core.Models
         public int Score { get; set; }
 
         /// <summary>
-        /// Creation of the item
+        /// Creation date of the item
         /// </summary>
         public DateTime Time { get; set; }
 
