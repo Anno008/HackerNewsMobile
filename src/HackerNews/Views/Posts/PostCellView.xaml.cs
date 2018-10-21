@@ -17,13 +17,13 @@ namespace HackerNews.Views.Posts
             this.WhenActivated(disposables =>
             {
                 this.OneWayBind(ViewModel, vm => vm.Title, view => view.TitleLabel.Text).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Title, view => view.TitleLabel.IsVisible, title => !string.IsNullOrWhiteSpace(title)).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.PostDate, view => view.DateTimePostedLabel.Text).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.Author, view => view.AuthorNameLabel.Text).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.Text, view => view.TextLabel.Text).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.Text, view => view.TextLabel.IsVisible, vmText => !string.IsNullOrWhiteSpace(vmText)).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.Score, view => view.ScoreLabel.Text).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.CommentsCount, view => view.CommentsLabel.Text).DisposeWith(disposables);
-
             });
         }
     }
