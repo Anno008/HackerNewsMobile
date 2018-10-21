@@ -10,6 +10,7 @@ namespace HackerNews.Core
     {
         IObservable<Post> Post { get; }
         IObservableCache<Post, int> Posts { get; }
+        IObservableCache<Post, int> Comments { get; }
         IObservable<Unit> GetPosts(int offset, PostType postType);
         IObservable<Unit> GetPostComments(int postId, int offset);
         IObservable<Unit> GetPost(int postId);

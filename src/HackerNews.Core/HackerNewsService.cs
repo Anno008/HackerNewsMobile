@@ -20,10 +20,12 @@ namespace HackerNews.Core
         private readonly SourceCache<Post, int> _posts = new SourceCache<Post, int>(x => x.Id);
         public IObservableCache<Post, int> Posts => _posts;
 
+        private readonly SourceCache<Post, int> _comments = new SourceCache<Post, int>(x => x.Id);
+        public IObservableCache<Post, int> Comments => _comments;
+
         public HackerNewsService(IHackerNewsRestService hackerNewsRestService = null)
         {
             _hackerNewsRestService = hackerNewsRestService ?? Locator.Current.GetService<IHackerNewsRestService>();
-            _posts = new SourceCache<Post, int>(x => x.Id);
         }
 
         public IObservable<Unit> GetPosts(int offset, PostType postType)
@@ -54,7 +56,7 @@ namespace HackerNews.Core
                         .GetPostComments(postId, offset)
                         .Select(result =>
                         {
-                            _posts.AddOrUpdate(result);
+                            _comments.AddOrUpdate(result);
                             return Unit.Default;
                         });
         }

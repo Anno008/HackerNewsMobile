@@ -22,8 +22,10 @@ namespace HackerNews.ViewModels.Posts
         ObservableAsPropertyHelper<bool> _commentsAreLoading;
         public bool CommentsAreLoading => _commentsAreLoading.Value;
 
-        private Post _post;
-        public Post Post
+        // Even though this post isn't a cell, created it like this since it already encapsulates all the properties
+        // and notifications I need
+        private PostCellViewModel _post;
+        public PostCellViewModel Post
         {
             get => _post;
             set => this.RaiseAndSetIfChanged(ref _post, value);
@@ -75,11 +77,11 @@ namespace HackerNews.ViewModels.Posts
                 .Where(p => p != null)
                 .SubscribeOn(_schedulerService.TaskPoolScheduler)
                 .ObserveOn(_schedulerService.MainScheduler)
-                .Subscribe(p => Post = p);
+                .Subscribe(p => Post = new PostCellViewModel(p));
 
             // Bind the comments related to the post to the _comments property
             _hackerNewsService
-               .Posts
+               .Comments
                .Connect()
                .Transform(x => new PostCellViewModel(x))
                .ObserveOn(_schedulerService.MainScheduler)

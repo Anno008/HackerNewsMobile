@@ -41,6 +41,20 @@ namespace HackerNews.ViewModels.Posts
             set => this.RaiseAndSetIfChanged(ref _text, value);
         }
 
+        private int _commentsCount;
+        public int CommentsCount
+        {
+            get => _commentsCount;
+            set => this.RaiseAndSetIfChanged(ref _commentsCount, value);
+        }
+
+        private int _score;
+        public int Score
+        {
+            get => _score;
+            set => this.RaiseAndSetIfChanged(ref _score, value);
+        }
+
         public PostCellViewModel(Post post)
         {
             _id = post.Id;
@@ -48,6 +62,8 @@ namespace HackerNews.ViewModels.Posts
             _postDate = post.Time;
             _author = post.By;
             _text = post.Text;
+            _commentsCount = post.Kids?.Count ?? 0;
+            _score = post.Score;
         }
     }
 }

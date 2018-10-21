@@ -19,10 +19,10 @@ namespace HackerNews.Views.Posts
                 this.OneWayBind(ViewModel, vm => vm.GetComments, view => view.PostsList.LoadMoreCommand);
                 this.OneWayBind(ViewModel, vm => vm.CommentsAreLoading, view => view.ActivityIndicator.IsLoading).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.Post.Title, view => view.TitleLabel.Text).DisposeWith(disposables);
-                this.OneWayBind(ViewModel, vm => vm.Post.By, view => view.AuthorLabel.Text).DisposeWith(disposables);
-                this.OneWayBind(ViewModel, vm => vm.Post.Time, view => view.TimePostedLabel.Text).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Post.Author, view => view.AuthorLabel.Text).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Post.PostDate, view => view.TimePostedLabel.Text).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.Post.Score, view => view.ScoreLabel.Text).DisposeWith(disposables);
-                this.OneWayBind(ViewModel, vm => vm.Post.Kids.Count, view => view.CommentsLabel.Text).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Post.CommentsCount, view => view.CommentsLabel.Text).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.Post.Text, view => view.TextLabel.Text).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.Post.Text, view => view.TextLabel.IsVisible, vmText => !string.IsNullOrWhiteSpace(vmText)).DisposeWith(disposables);
             });
