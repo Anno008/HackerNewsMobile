@@ -30,8 +30,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="NewsApp.xaml.cs">
-      <DependentUpon>NewsApp.xaml</DependentUpon>
+    <Compile Update="HackerNewsApp.xaml.cs">
+      <DependentUpon>HackerNewsApp.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Posts\PostsView.xaml.cs">
       <DependentUpon>PostsView.xaml</DependentUpon>

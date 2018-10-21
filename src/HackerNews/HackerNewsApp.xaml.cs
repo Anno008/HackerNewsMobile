@@ -12,9 +12,9 @@ using Xamarin.Forms.Xaml;
 
 namespace HackerNews
 {
-    public partial class NewsApp : Application
+    public partial class HackerNewsApp : Application
     {
-        public NewsApp()
+        public HackerNewsApp()
         {
             InitializeComponent();
             SetupLocalization();

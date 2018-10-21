@@ -12,7 +12,7 @@ namespace HackerNews.UWP
 
             Locator.CurrentMutable.Register(() => new UwpLocalizationService(), typeof(ILocalizationService));
 
-            LoadApplication(new NewsApp());
+            LoadApplication(new HackerNewsApp());
         }
     }
 }

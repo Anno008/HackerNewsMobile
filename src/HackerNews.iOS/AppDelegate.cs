@@ -30,7 +30,7 @@ namespace HackerNews.iOS
             Rg.Plugins.Popup.Popup.Init();
             Locator.CurrentMutable.Register(() => new IosLocalizationService(), typeof(ILocalizationService));
 
-            LoadApplication(new NewsApp());
+            LoadApplication(new HackerNewsApp());
             return base.FinishedLaunching(app, options);
         }
 
