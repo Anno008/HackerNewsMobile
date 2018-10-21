@@ -34,12 +34,15 @@ namespace HackerNews.ViewModels.Posts
         {
             _newsService = newsService ?? Locator.Current.GetService<IHackerNewsService>();
 
+            // Registering the get posts command
             GetPosts = ReactiveCommand
                 .CreateFromObservable<int, Unit>(offset =>
                     _newsService.GetPosts(offset, postType),
                     outputScheduler: _schedulerService.TaskPoolScheduler);
             GetPosts.Subscribe();
 
+            // Connecting the dynamic data source cache with the view model's list
+            // Changes are displayed on the ui immediately after the service cache gets updated
             _newsService
                 .Posts
                 .Connect()
@@ -49,13 +52,16 @@ namespace HackerNews.ViewModels.Posts
                 .DisposeMany()
                 .Subscribe();
 
+            // Handling the flag for activity indicator when the command is executing
             GetPosts
                 .IsExecuting
                 .SubscribeOn(_schedulerService.TaskPoolScheduler)
                 .ToProperty(this, x => x.IsLoading, out _isLoading, true, scheduler: _schedulerService.MainScheduler);
 
+            // When any of the Reactive Commands throw an error handle it here
             GetPosts
                 .ThrownExceptions
+                .ObserveOn(_schedulerService.MainScheduler)
                 .Subscribe(e => this.ShowGenericError());
         }
     }
