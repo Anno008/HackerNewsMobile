@@ -14,10 +14,17 @@ namespace HackerNews.ViewModels.Posts
 {
     public class PostsViewModel : ViewModelBase
     {
-        private readonly IHackerNewsService _newsService;
+        private readonly IHackerNewsService _hackerNewsService;
 
         private ReadOnlyObservableCollection<PostCellViewModel> _posts;
         public ReadOnlyObservableCollection<PostCellViewModel> Posts => _posts;
+
+        private PostCellViewModel _selectedPost;
+        public PostCellViewModel SelectedPost
+        {
+            get => _selectedPost;
+            set => this.RaiseAndSetIfChanged(ref _selectedPost, value);
+        }
 
         ObservableAsPropertyHelper<bool> _isLoading;
         public bool IsLoading => _isLoading.Value;
@@ -29,21 +36,21 @@ namespace HackerNews.ViewModels.Posts
             string title,
             ISchedulerService schedulerService = null,
             IViewStackService viewStackService = null,
-            IHackerNewsService newsService = null)
+            IHackerNewsService hackerNewsService = null)
             : base(schedulerService, viewStackService, title)
         {
-            _newsService = newsService ?? Locator.Current.GetService<IHackerNewsService>();
+            _hackerNewsService = hackerNewsService ?? Locator.Current.GetService<IHackerNewsService>();
 
             // Registering the get posts command
             GetPosts = ReactiveCommand
                 .CreateFromObservable<int, Unit>(offset =>
-                    _newsService.GetPosts(offset, postType),
+                    _hackerNewsService.GetPosts(offset, postType),
                     outputScheduler: _schedulerService.TaskPoolScheduler);
             GetPosts.Subscribe();
 
             // Connecting the dynamic data source cache with the view model's list
-            // Changes are displayed on the ui immediately after the service cache gets updated
-            _newsService
+            // Changes are displayed on the UI immediately after the service cache gets updated
+            _hackerNewsService
                 .Posts
                 .Connect()
                 .Transform(x => new PostCellViewModel(x))
@@ -51,6 +58,13 @@ namespace HackerNews.ViewModels.Posts
                 .Bind(out _posts)
                 .DisposeMany()
                 .Subscribe();
+
+            // When a post gets selected navigate to the details page
+            this.WhenAnyValue(x => x.SelectedPost)
+                    .Where(post => post != null)
+                    .ObserveOn(_schedulerService.MainScheduler)
+                    .SelectMany(vm => _viewStackService.PushPage(new PostDetailsViewModel(vm.Id)))
+                    .Subscribe();
 
             // Handling the flag for activity indicator when the command is executing
             GetPosts

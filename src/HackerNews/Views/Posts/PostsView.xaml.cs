@@ -17,6 +17,7 @@ namespace HackerNews.Views.Posts
             this.WhenActivated(disposables =>
             {
                 this.OneWayBind(ViewModel, vm => vm.Posts, view => view.PostsList.ItemsSource).DisposeWith(disposables);
+                this.Bind(ViewModel, vm => vm.SelectedPost, view => view.PostsList.SelectedItem).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.GetPosts, view => view.PostsList.LoadMoreCommand);
                 this.OneWayBind(ViewModel, vm => vm.IsLoading, view => view.ActivityIndicator.IsLoading).DisposeWith(disposables);
                 Observable.Return(0).InvokeCommand(ViewModel, x => x.GetPosts);

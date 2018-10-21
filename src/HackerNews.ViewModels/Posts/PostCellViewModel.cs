@@ -6,6 +6,13 @@ namespace HackerNews.ViewModels.Posts
 {
     public class PostCellViewModel : ReactiveObject
     {
+        private int _id;
+        public int Id
+        {
+            get => _id;
+            set => this.RaiseAndSetIfChanged(ref _id, value);
+        }
+
         private string _title;
         public string Title
         {
@@ -36,6 +43,7 @@ namespace HackerNews.ViewModels.Posts
 
         public PostCellViewModel(Post post)
         {
+            _id = post.Id;
             _title = post.Title;
             _postDate = post.Time;
             _author = post.By;
