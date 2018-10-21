@@ -33,17 +33,17 @@ namespace HackerNews.ViewModels.HomeScreen
                 new HomeScreenCellViewModel
                 {
                     Name = Texts.Popular,
-                    PageToPush = Observable.Defer(() => _viewStackService.PushPage(new PostsViewModel(PostType.PopularPosts)))
+                    PageToPush = Observable.Defer(() => _viewStackService.PushPage(new PostsViewModel(PostType.PopularPosts, Texts.Popular)))
                 },
                 new HomeScreenCellViewModel
                 {
                     Name =  Texts.New,
-                    PageToPush = Observable.Defer(() => _viewStackService.PushPage(new PostsViewModel(PostType.NewestPosts)))
+                    PageToPush = Observable.Defer(() => _viewStackService.PushPage(new PostsViewModel(PostType.NewestPosts, Texts.New)))
                 },
                 new HomeScreenCellViewModel
                 {
                     Name = Texts.Jobs,
-                    PageToPush = Observable.Defer(() => _viewStackService.PushPage(new PostsViewModel(PostType.JobPosts)))
+                    PageToPush = Observable.Defer(() => _viewStackService.PushPage(new PostsViewModel(PostType.JobPosts, Texts.Jobs)))
                 }
             };
 

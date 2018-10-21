@@ -45,15 +45,18 @@ namespace HackerNews.ViewModels
         protected readonly IViewStackService _viewStackService;
 
         // For UWP the title needs to be at least an empty space, or the navigation bar wont be displayed
-        public virtual string Id => " ";
+        private string _id = " ";
+        public virtual string Id => _id;
 
         public ViewModelBase(
             ISchedulerService schedulerService,
-            IViewStackService viewStackService)
+            IViewStackService viewStackService,
+            string title = " ")
         {
-            _viewStackService = viewStackService ?? Locator.Current.GetService<IViewStackService>(); ;
+            _viewStackService = viewStackService ?? Locator.Current.GetService<IViewStackService>();
             _schedulerService = schedulerService ?? Locator.Current.GetService<ISchedulerService>();
 
+            _id = title;
             _showAlert = new Interaction<string, Unit>(_schedulerService.MainScheduler);
             _showError = new Interaction<string, Unit>(_schedulerService.MainScheduler);
             _showInfo = new Interaction<(string title, string message), Unit>(_schedulerService.MainScheduler);

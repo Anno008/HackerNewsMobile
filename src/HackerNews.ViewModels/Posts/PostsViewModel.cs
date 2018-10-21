@@ -26,10 +26,11 @@ namespace HackerNews.ViewModels.Posts
 
         public PostsViewModel(
             PostType postType,
+            string title,
             ISchedulerService schedulerService = null,
             IViewStackService viewStackService = null,
             IHackerNewsService newsService = null)
-            : base(schedulerService, viewStackService)
+            : base(schedulerService, viewStackService, title)
         {
             _newsService = newsService ?? Locator.Current.GetService<IHackerNewsService>();
 
