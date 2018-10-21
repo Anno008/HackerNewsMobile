@@ -16,6 +16,7 @@ namespace HackerNews.Views.Posts
             this.WhenActivated(disposables =>
             {
                 this.OneWayBind(ViewModel, vm => vm.Comments, view => view.PostsList.ItemsSource).DisposeWith(disposables);
+                this.Bind(ViewModel, vm => vm.SelectedCommentPost, view => view.PostsList.SelectedItem).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.GetComments, view => view.PostsList.LoadMoreCommand);
                 this.OneWayBind(ViewModel, vm => vm.CommentsAreLoading, view => view.ActivityIndicator.IsLoading).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.Post.Title, view => view.TitleLabel.Text).DisposeWith(disposables);

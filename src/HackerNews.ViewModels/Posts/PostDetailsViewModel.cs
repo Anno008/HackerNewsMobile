@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Reactive;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using DynamicData;
 using HackerNews.Core;
@@ -29,6 +30,14 @@ namespace HackerNews.ViewModels.Posts
         {
             get => _post;
             set => this.RaiseAndSetIfChanged(ref _post, value);
+        }
+
+        // Selected comment of the post
+        private PostCellViewModel _selectedCommentPost;
+        public PostCellViewModel SelectedCommentPost
+        {
+            get => _selectedCommentPost;
+            set => this.RaiseAndSetIfChanged(ref _selectedCommentPost, value);
         }
 
         public ReactiveCommand<int, Unit> GetComments { get; protected set; }
@@ -104,7 +113,19 @@ namespace HackerNews.ViewModels.Posts
                 .SelectMany(ex => ShowGenericError(null, ex))
                 .Subscribe();
 
-            Observable.Return(postId).InvokeCommand(GetPost);
+            // When a comment gets selected navigate to the details page
+            this.WhenAnyValue(x => x.SelectedCommentPost)
+                    .Where(post => post != null && post.CommentsCount > 0)
+                    .ObserveOn(_schedulerService.MainScheduler)
+                    .SelectMany(vm => _viewStackService.PushPage(new PostDetailsViewModel(vm.Id)))
+                    .Subscribe();
+
+            this.WhenActivated((CompositeDisposable disposables) =>
+            {
+                // Clearing the selected post once this VM is activated
+                SelectedCommentPost = null;
+                Observable.Return(postId).InvokeCommand(GetPost);
+            });
         }
     }
 }
