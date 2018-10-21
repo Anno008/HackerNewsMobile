@@ -21,6 +21,9 @@ namespace HackerNews.Views.Posts
                 this.OneWayBind(ViewModel, vm => vm.Author, view => view.AuthorNameLabel.Text).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.Text, view => view.TextLabel.Text).DisposeWith(disposables);
                 this.OneWayBind(ViewModel, vm => vm.Text, view => view.TextLabel.IsVisible, vmText => !string.IsNullOrWhiteSpace(vmText)).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.Score, view => view.ScoreLabel.Text).DisposeWith(disposables);
+                this.OneWayBind(ViewModel, vm => vm.CommentsCount, view => view.CommentsLabel.Text).DisposeWith(disposables);
+
             });
         }
     }

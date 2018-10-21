@@ -12,13 +12,19 @@
   <ViewCell.View>
     <Frame BorderColor="Black">
       <StackLayout Orientation="Vertical" Margin="5">
+        <Label x:Name="TitleLabel" FontAttributes="Bold" />
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-          <Label Text="By: " HorizontalOptions="Start"/>
+          <Label Text="{i18n:Translate Author}" HorizontalOptions="Start"/>
           <Label x:Name="AuthorNameLabel"  HorizontalOptions="Start"/>
           <Label x:Name="DateTimePostedLabel" HorizontalOptions="EndAndExpand"/>
         </StackLayout>
-        <Label x:Name="TitleLabel" />
         <Label x:Name="TextLabel" />
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+          <Label Text="{i18n:Translate Score}" HorizontalOptions="Start"/>
+          <Label x:Name="ScoreLabel"  HorizontalOptions="Start"/>
+          <Label x:Name="CommentsLabel" HorizontalOptions="EndAndExpand"/>
+          <Label Text="{i18n:Translate Comments}" HorizontalOptions="End"/>
+        </StackLayout>
       </StackLayout>
     </Frame>
   </ViewCell.View>
