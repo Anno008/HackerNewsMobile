@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
 using HackerNews.Core.Models;
+using HackerNews.ViewModels.Helpers;
+using HtmlAgilityPack;
 using ReactiveUI;
 
 namespace HackerNews.ViewModels.Posts
@@ -68,7 +71,7 @@ namespace HackerNews.ViewModels.Posts
             _title = post.Title;
             _postDate = post.Time;
             _author = post.By;
-            _text = post.Text;
+            _text = post.Text.ConvertHtml();
             _commentsCount = post.Kids?.Count ?? 0;
             _score = post.Score;
             _url = post.Url;
